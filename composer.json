@@ -1,0 +1,30 @@
+{
+    "name": "madtechservices/nova-pulse",
+    "description": "The Nova Pulse package provides an easy way to integrate Pulse into your Laravel Nova dashboard, allowing you to access Laravel Pulse directly from your Nova application.",
+    "keywords": [
+        "laravel",
+        "pulse",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Madtechservices\\NovaPulse\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "madtechservices\\NovaPulse\\ToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
