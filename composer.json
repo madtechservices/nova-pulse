@@ -1,18 +1,19 @@
 {
     "name": "madtechservices/nova-pulse",
-    "description": "A Laravel Nova tool to embed Laravel Pulse in an iframe.",
-    "keywords": [
-        "laravel",
-        "pulse",
-        "laravel pulser",
-        "debugging",
-        "nova 4",
-        "nova"
-    ],
+    "description": "A Laravel Nova tool for integrating Laravel Pulse.",
+    "type": "library",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Matt Horsley",
+            "email": "your-email@example.com"
+        }
+    ],
     "require": {
+        "php": "^8.1",
         "laravel/nova": "^4.0",
-        "php": "^8.1"
+        "laravel/framework": "^11.0",
+        "laravel/pulse": "^1.0"
     },
     "autoload": {
         "psr-4": {
