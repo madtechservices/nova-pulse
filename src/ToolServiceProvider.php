@@ -1,12 +1,11 @@
 <?php
-
 namespace Madtechservices\NovaPulse;
 
-use Madtechservices\NovaPulse\Http\Middleware\Authorize;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Nova;
+use Madtechservices\NovaPulse\Http\Middleware\Authorize;
+use Madtechservices\NovaPulse\Http\Middleware\Authenticate;
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -20,6 +19,11 @@ class ToolServiceProvider extends ServiceProvider
         $this->app->booted(function () {
             $this->routes();
         });
+
+         // Register the tool with a unique key
+         Nova::tools([
+            new NovaPulse(), // Ensure this class exists and is autoloaded
+        ]);
     }
 
     /**
@@ -35,6 +39,10 @@ class ToolServiceProvider extends ServiceProvider
 
         Nova::router(['nova', Authenticate::class, Authorize::class], 'nova-pulse')
             ->group(__DIR__.'/../routes/inertia.php');
+
+        // Route::middleware(['nova', Authenticate::class, Authorize::class])
+        //     ->prefix('nova-vendor/nova-pulse')
+        //     ->group(__DIR__.'/../routes/inertia.php');
 
         Route::middleware(['nova', Authorize::class])
             ->prefix('nova-vendor/nova-pulse')

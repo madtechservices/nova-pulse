@@ -1,4 +1,4 @@
-import Tool from './pages/Tool'
+import Tool from './pages/NovaPulse'
 
 Nova.booting((app, store) => {
   Nova.inertia('NovaPulse', Tool)

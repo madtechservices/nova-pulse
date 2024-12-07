@@ -26,8 +26,8 @@ class NovaPulse extends Tool
      */
     public function boot()
     {
-        Nova::script('nova-pulse', __DIR__.'/../dist/js/tool.js');
-        Nova::style('nova-pulse', __DIR__.'/../dist/css/tool.css');
+        Nova::script('nova-pulse', __DIR__.'/../dist/js/novapulse.js');
+        Nova::style('nova-pulse', __DIR__.'/../dist/css/novapulse.css');
         Nova::provideToScript([
             'tool' => [
                 'pulse' => '/'.config('pulse.path'),
