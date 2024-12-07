@@ -1,18 +1,15 @@
 <?php
+
 namespace Madtechservices\NovaPulse;
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
-use Madtechservices\NovaPulse\Http\Middleware\Authorize;
-use Madtechservices\NovaPulse\Http\Middleware\Authenticate;
+use Illuminate\Support\ServiceProvider;
 
 class ToolServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
-     *
-     * @return void
+     * Bootstrap the application services.
      */
     public function boot()
     {
@@ -20,23 +17,13 @@ class ToolServiceProvider extends ServiceProvider
             $this->routes();
         });
 
-         // Register the tool with a unique key
-         Nova::tools([
-            new NovaPulse(), // Ensure this class exists and is autoloaded
-        ]);
-
-        // Provide configuration to Nova frontend
-        Nova::provideToScript([
-            'nova-pulse' => [
-                'pulse' => route('nova-pulse.frame'), // Use the named route for the iframe
-            ],
-        ]);
+        // Register the view namespace for this tool
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nova-pulse');
     }
+
 
     /**
      * Register the tool's routes.
-     *
-     * @return void
      */
     protected function routes()
     {
@@ -44,25 +31,18 @@ class ToolServiceProvider extends ServiceProvider
             return;
         }
 
-        Nova::router(['nova', Authenticate::class, Authorize::class], 'nova-pulse')
-            ->group(__DIR__.'/../routes/inertia.php');
-
-        // Route::middleware(['nova', Authenticate::class, Authorize::class])
-        //     ->prefix('nova-vendor/nova-pulse')
-        //     ->group(__DIR__.'/../routes/inertia.php');
-
-        Route::middleware(['nova', Authorize::class])
-            ->prefix('nova-vendor/nova-pulse')
-            ->group(__DIR__.'/../routes/api.php');
+        // Register the nova-pulse route under /nova
+        Route::middleware(['nova'])
+            ->prefix('nova/nova-pulse')
+            ->group(function () {
+                Route::get('/', function () {
+                    return view('nova-pulse::iframe', [
+                        'pulseUrl' => url('/pulse'), // Laravel Pulse URL
+                    ]);
+                })->name('nova-pulse.frame');
+            });
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
+
+
 }

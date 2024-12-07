@@ -2,8 +2,8 @@
 
 namespace Madtechservices\NovaPulse\Http\Middleware;
 
-use Madtechservices\NovaPulse\NovaPulse;
 use Laravel\Nova\Nova;
+use Madtechservices\NovaPulse\NovaPulse;
 
 class Authorize
 {
@@ -18,7 +18,7 @@ class Authorize
     {
         $tool = collect(Nova::registeredTools())->first([$this, 'matchesTool']);
 
-        return is_object($tool) && method_exists($tool, 'authorize') && $tool->authorize($request) ? $next($request) : abort(403);
+        return optional($tool)->authorize($request) ? $next($request) : abort(403);
     }
 
     /**
