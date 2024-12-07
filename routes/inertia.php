@@ -14,6 +14,8 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 |
 */
 
-Route::get('/', function (NovaRequest $request) {
+
+// routes/inertia.php for NovaPulse Fixed to prevent conflict with nova-telescope-menu
+Route::get('/nova-pulse', function (NovaRequest $request) {
     return inertia('NovaPulse');
 });
