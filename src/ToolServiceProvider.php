@@ -24,6 +24,13 @@ class ToolServiceProvider extends ServiceProvider
          Nova::tools([
             new NovaPulse(), // Ensure this class exists and is autoloaded
         ]);
+
+        // Provide configuration to Nova frontend
+        Nova::provideToScript([
+            'nova-pulse' => [
+                'pulse' => route('nova-pulse.frame'), // Use the named route for the iframe
+            ],
+        ]);
     }
 
     /**

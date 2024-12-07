@@ -16,6 +16,12 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 
 // routes/inertia.php for NovaPulse Fixed to prevent conflict with nova-telescope-menu
-Route::get('/nova-pulse', function (NovaRequest $request) {
+Route::get('/', function (NovaRequest $request) {
     return inertia('NovaPulse');
 });
+
+Route::middleware(['nova'])
+    ->get('/nova-pulse/frame', function () {
+        return '<h1>Nova Pulse</h1>'; // Placeholder iframe content
+    })
+    ->name('nova-pulse.frame'); // This name is used in the `provideToScript` call
