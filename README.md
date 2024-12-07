@@ -1,6 +1,6 @@
 # Nova Pulse
 
-Nova Pulse is a custom tool for Laravel Nova that integrates Laravel Pulse, allowing you to debug your Laravel application directly from the Nova dashboard. This tool loads Laravel Pulse in a lightweight popup/lightbox style interface for quick access.
+Nova Pulse is a custom tool for Laravel Nova that integrates Laravel Pulse, allowing you to debug your Laravel application directly from the Nova dashboard. This tool loads Laravel Pulse in a lightweight popup/lightbox style interface for quick access. Use at your own risk I am still learning. Very open for people to help me make this better like making it look like part of the nova dashboard instead of a popup.
 
 ## Features
 
@@ -12,6 +12,7 @@ Nova Pulse is a custom tool for Laravel Nova that integrates Laravel Pulse, allo
 
 - Laravel: ^11.0
 - Laravel Nova: ^4.0
+- Laravel Pulse: ^1.0
 - PHP: ^8.1
 
 ## Installation
