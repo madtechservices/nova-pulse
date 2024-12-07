@@ -18,7 +18,7 @@ class Authorize
     {
         $tool = collect(Nova::registeredTools())->first([$this, 'matchesTool']);
 
-        return optional($tool)->authorize($request) ? $next($request) : abort(403);
+        return is_object($tool) && method_exists($tool, 'authorize') && $tool->authorize($request) ? $next($request) : abort(403);
     }
 
     /**
